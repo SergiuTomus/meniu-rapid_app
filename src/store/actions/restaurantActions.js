@@ -1,4 +1,4 @@
-import { SELECT_RESTAURANT, SHOW_CONTACT } from './actionTypes';
+import { SELECT_RESTAURANT, SHOW_CONTACT } from './types';
 
 export const selectRestaurant = (key) => {
     return {
