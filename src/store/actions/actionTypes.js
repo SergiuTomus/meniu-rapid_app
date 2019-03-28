@@ -1,0 +1,2 @@
+export const SELECT_RESTAURANT = 'SELECT_RESTAURANT';
+export const SHOW_CONTACT = 'SHOW_CONTACT';
