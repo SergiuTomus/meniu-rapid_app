@@ -1,4 +1,4 @@
-import { SELECT_RESTAURANT } from '../actions/actionTypes';
+import { GET_RESTAURANTS, SELECT_RESTAURANT, GET_RESTAURANT, SHOW_CONTACT } from '../actions/types';
 import placeImage1 from '../../assets/logo1.jpg';
 import placeImage2 from '../../assets/logo2.jpg';
 import placeImage3 from '../../assets/logo3.png';
@@ -62,7 +62,7 @@ const initialState = {
       name: "Trattoria",
       image: placeImage10
     },
-      
+
   ],
   selectedRestaurant: null
 };
