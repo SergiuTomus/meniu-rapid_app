@@ -5,16 +5,16 @@ import { GET_RESTAURANTS, SELECT_RESTAURANT, GET_RESTAURANT, SHOW_CONTACT } from
 export const getRestaurants = () => {
   return (dispatch) => {
     axios
-      .get(`http://localhost:3005/client/restaurants`)
+      .get(`http://192.168.17.95:3005/client/restaurants`)
       .then(res =>
         dispatch({
           type: GET_RESTAURANTS,
-          payload: res.data
+          payload: res.data.restaurants
         })
       )
       .catch(err =>
         dispatch({
-          type: GET_RESTAURANTS,
+          type: GET_ALL_ORDERS,
           payload: null
         })
       );

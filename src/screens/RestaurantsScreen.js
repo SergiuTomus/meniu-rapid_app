@@ -2,15 +2,19 @@ import React, { Component } from "react";
 import { Button, View, Text } from "react-native";
 import { connect } from 'react-redux';
 import RestaurantList from '../components/RestaurantList';
-import { selectRestaurant } from './../store/actions/restaurants';
+import { selectRestaurant, getRestaurants } from '../store/actions/restaurantActions';
 
 class RestaurantsScreen extends Component {
+  componentDidMount() {
+    this.props.getRestaurants();
+  }
+
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <RestaurantList 
+        <RestaurantList
           restaurants={this.props.restaurants}
-          onItemSelected={this.props.onSelectRestaurant}
+          // onItemSelected={this.props.onSelectRestaurant}
           navigate={this.props.navigation}
         />
       </View>
@@ -25,13 +29,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSelectRestaurant: (key, navigate) => { 
-      navigate.navigate('SelectedRestaurant');
-      return dispatch(selectRestaurant(key))
-    },
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onSelectRestaurant: (key, navigate) => {
+//       navigate.navigate('SelectedRestaurant');
+//       return dispatch(selectRestaurant(key))
+//     },
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantsScreen);
+export default connect(mapStateToProps, { getRestaurants })(RestaurantsScreen);

@@ -32,36 +32,36 @@ const initialState = {
       name: "Chili Pistols",
       image: placeImage4
     },
-    {
-      key: Math.random().toString(),
-      name: "Tacorama",
-      image: placeImage5
-    },
+    // {
+    //   key: Math.random().toString(),
+    //   name: "Tacorama",
+    //   image: placeImage5
+    // },
     {
       key: Math.random().toString(),
       name: "Aloro",
       image: placeImage6
     },
-    {
-      key: Math.random().toString(),
-      name: "Spice Wallahs",
-      image: placeImage7
-    },
+    // {
+    //   key: Math.random().toString(),
+    //   name: "Spice Wallahs",
+    //   image: placeImage7
+    // },
     {
       key: Math.random().toString(),
       name: "Pasta",
       image: placeImage8
     },
-    {
-      key: Math.random().toString(),
-      name: "Bank Restaurant",
-      image: placeImage9
-    },
-    {
-      key: Math.random().toString(),
-      name: "Trattoria",
-      image: placeImage10
-    },
+    // {
+    //   key: Math.random().toString(),
+    //   name: "Bank Restaurant",
+    //   image: placeImage9
+    // },
+    // {
+    //   key: Math.random().toString(),
+    //   name: "Trattoria",
+    //   image: placeImage10
+    // },
 
   ],
   selectedRestaurant: null
@@ -74,6 +74,17 @@ const restaurantsReducer = (state = initialState, action) => {
         ...state,
         selectedRestaurant: state.restaurants.find(restaurant => {
           return restaurant.key === action.restaurantKey;
+        })
+      };
+    case GET_RESTAURANTS:
+      return {
+        ...state,
+        restaurants: action.payload.map(item => {
+          return {
+            key: item.id.toString(),
+            name: item.restaurant_name,
+            image: `http://192.168.17.95:3005/${item.image_url}`
+          }
         })
       };
     default:
