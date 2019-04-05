@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { GET_RESTAURANTS, SELECT_RESTAURANT, GET_RESTAURANT, SHOW_CONTACT } from './types';
+import { API_BASE_URL } from '../../api/config';
 
 // Get restaurants
 export const getRestaurants = () => {
   return (dispatch) => {
     axios
-      .get(`http://192.168.17.95:3005/client/restaurants`)
+      .get(`${API_BASE_URL}/client/restaurants`)
       .then(res =>
         dispatch({
           type: GET_RESTAURANTS,
@@ -32,11 +33,11 @@ export const selectRestaurant = (key) => {
 export const getRestaurant = (id) => {
   return (dispatch) => {
     axios
-      .get(`http://localhost:3005/client/restaurants/${id}`)
+      .get(`${API_BASE_URL}/client/restaurants/${id}`)
       .then(res =>
         dispatch({
           type: GET_RESTAURANT,
-          payload: res.data
+          payload: res.data.restaurant[0]
         })
       )
       .catch(err =>

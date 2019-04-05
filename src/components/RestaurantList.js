@@ -11,7 +11,7 @@ const restaurantList = props => {
         restaurantName={info.item.name}
         restaurantImage={info.item.image}
         key={info.item.key}
-        onItemPressed={() => props.onItemSelected(info.item.key, props.navigate)}
+        onItemPressed={() => props.onItemSelected(info.item.key)}
       />
     )}
   />;

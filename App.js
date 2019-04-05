@@ -23,13 +23,13 @@ const RestaurantsStackNavigator = createStackNavigator(
 
 const AppDrawerNavigator = createDrawerNavigator(
   {
-    RestaurantsStack: RestaurantsStackNavigator,
+    Restaurante: RestaurantsStackNavigator,
     Autentificare: AuthScreen,
-    Adrese_de_livrare: DeliveryAddressesScreen
+    'Adrese de livrare': DeliveryAddressesScreen
 
   },
   {
-    initialRouteName: "RestaurantsStack"
+    initialRouteName: "Restaurante"
   }
 );
 
