@@ -15,7 +15,7 @@ const RestaurantsStackNavigator = createStackNavigator(
   {
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: '#BB2D04'
+        backgroundColor: '#1A7919'
       }
     }
   }

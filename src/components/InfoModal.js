@@ -1,6 +1,8 @@
 import React from 'react';
-import { Modal, View, Image, Text, Button, StyleSheet } from 'react-native';
+import { Modal, View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { API_BASE_URL } from '../api/config';
+import CustomButton from '../components/CustomButton';
+import StrikeToTitle from './StrikeToTitle';
 
 const infoModal = props => {
   return (
@@ -8,17 +10,16 @@ const infoModal = props => {
       <View style={styles.modalContainer}>
         <Image source={{ uri: `${API_BASE_URL}/${props.restaurant.image_url}` }} style={styles.restaurantImage} />
         <Text style={styles.restaurantName}>{props.restaurant.name}</Text>
-        <Text>Adresa: {props.restaurant.address}</Text>
-        <Text>Telefon: {props.restaurant.phone}</Text>
-        <Text>Program: </Text>
-        <Text>Luni-Vineri: {props.restaurant.week_program}</Text>
-        <Text>Sambata: {props.restaurant.saturday_program}</Text>
-        <Text>Duminica: {props.restaurant.sunday_program}</Text>
-        <Text>Comanda minima: {props.restaurant.minimum_order} lei</Text>
-        <Text>Cost livrare: {props.restaurant.cost_delivery} lei</Text>
-        <View>
-          <Button title="Close" onPress={props.onModalClosed} />
-        </View>
+        <StrikeToTitle title="INFO" />
+        <Text style={styles.text}>Adresa: {props.restaurant.address}</Text>
+        <Text style={styles.text}>Telefon: {props.restaurant.phone}</Text>
+        <Text style={styles.text}>Comanda minima: {props.restaurant.minimum_order} lei</Text>
+        <Text style={styles.text}>Cost livrare: {props.restaurant.cost_delivery} lei</Text>
+        <StrikeToTitle title="PROGRAM" />
+        <Text style={styles.text}>Luni-Vineri: {props.restaurant.week_program}</Text>
+        <Text style={styles.text}>Sambata: {props.restaurant.saturday_program}</Text>
+        <Text style={styles.text}>Duminica: {props.restaurant.sunday_program}</Text>
+        <CustomButton style={{ marginTop: 50 }} buttonPressed={props.onModalClosed} buttonText="Inchide" />
       </View>
     </Modal>
   );
@@ -26,7 +27,11 @@ const infoModal = props => {
 
 const styles = StyleSheet.create({
   modalContainer: {
-    margin: 22
+    margin: 22,
+    marginBottom: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 28
   },
   restaurantImage: {
     width: "100%",
@@ -36,6 +41,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 28
+  },
+  text: {
+    fontSize: 18
   }
 
 });

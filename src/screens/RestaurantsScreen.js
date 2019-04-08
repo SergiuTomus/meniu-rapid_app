@@ -9,8 +9,8 @@ class RestaurantsScreen extends Component {
     this.props.getRestaurants();
   }
 
-  onSelectRestaurant = (key) => {
-    this.props.navigation.navigate('SelectedRestaurant', { id: key });
+  onSelectRestaurant = (id) => {
+    this.props.navigation.navigate('SelectedRestaurant', { id: id });
   }
 
   render() {

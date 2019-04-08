@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const category = (props) => {
+const customButton = (props) => {
   return (
-    <TouchableOpacity onPress={() => props.onItemPressed()}>
+    <TouchableOpacity onPress={() => props.buttonPressed()}>
       <View style={styles.category} >
-        <Text style={{ fontSize: 20, color: '#156D14' }}>{props.categoryName}</Text>
+        <Text style={{ fontSize: 20, color: '#156D14' }}>{props.buttonText}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -31,9 +31,11 @@ const styles = StyleSheet.create({
     shadowColor: 'gray',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowRadius: 12,
+    elevation: 4,
+    // borderWidth: 10,
+    borderColor: '#f0f0f5',
   }
 });
 
-export default category;
+export default customButton;
