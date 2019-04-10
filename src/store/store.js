@@ -1,9 +1,11 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import restaurantsReducer from './reducers/restaurantReducer';
+import restaurantReducer from './reducers/restaurantReducer';
+import orderReducer from './reducers/orderReducer';
 
 const rootReducer = combineReducers({
-  restaurantsReducer: restaurantsReducer
+  restaurantReducer: restaurantReducer,
+  orderReducer: orderReducer
 });
 
 const store = () => {

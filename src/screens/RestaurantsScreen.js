@@ -3,8 +3,15 @@ import { View } from "react-native";
 import { connect } from 'react-redux';
 import RestaurantList from '../components/RestaurantList';
 import { getRestaurants } from '../store/actions/restaurantActions';
+import ShoppingCart from '../components/ShoppingCart';
 
 class RestaurantsScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerRight: (<ShoppingCart navigation={navigation} />)
+    };
+  };
+
   componentDidMount() {
     this.props.getRestaurants();
   }
@@ -27,7 +34,7 @@ class RestaurantsScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    restaurants: state.restaurantsReducer.restaurants
+    restaurants: state.restaurantReducer.restaurants
   };
 };
 

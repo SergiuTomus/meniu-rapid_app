@@ -5,12 +5,16 @@ import RestaurantsScreen from './src/screens/RestaurantsScreen';
 import SelectedRestaurantScreen from './src/screens/SelectedRestaurantScreen';
 import ProductsScreen from './src/screens/ProductsScreen';
 import DeliveryAddressesScreen from './src/screens/DeliveryAddressesScreen';
+import OrderScreen from "./src/screens/OrderScreen";
+import ShoppingCart from './src/components/ShoppingCart'
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const RestaurantsStackNavigator = createStackNavigator(
   {
     Restaurants: RestaurantsScreen,
     SelectedRestaurant: SelectedRestaurantScreen,
-    Products: ProductsScreen
+    Products: ProductsScreen,
+    Order: OrderScreen
   },
   {
     defaultNavigationOptions: {

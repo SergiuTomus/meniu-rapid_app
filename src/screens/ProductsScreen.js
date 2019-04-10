@@ -1,23 +1,65 @@
 import React, { Component } from "react";
-import { Button, View, Text } from "react-native";
+import { View, FlatList, Image } from "react-native";
+import { connect } from 'react-redux';
+import { getProducts } from '../store/actions/orderActions';
+import spinner from '../assets/spinner.gif';
+import Product from '../components/Product';
+import ShoppingCart from '../components/ShoppingCart';
 
-export default class ProductsScreen extends Component {
-    // static navigationOptions = {
-    //     header: null
-    // }
+class ProductsScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerRight: (<ShoppingCart navigation={navigation} />)
+    };
+  };
 
-    render() {
-      return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text>Product</Text>
-          <Text>Product</Text>
-          <Text>Product</Text>
-          <Text>Product</Text>
-          <Text>Product</Text>
-          <Text>Product</Text>
-          <Text>Product</Text>
-          <Text>Product</Text>
+  componentDidMount() {
+    const id = this.props.navigation.getParam('id', 'no_key');
+    this.props.getProducts(id);
+  }
+
+  productSelected = (id) => {
+
+  }
+
+  render() {
+    let productsContent;
+    if (this.props.products === null) {
+      productsContent = (
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={spinner} />
+        </View>
+      );
+    } else {
+      productsContent = (
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <FlatList
+            style={{ width: '100%', marginTop: 5, textAlign: 'center', height: 320 }}
+            data={this.props.products.Products}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={(info) => (
+              <Product
+                productName={info.item.name}
+                key={info.item.id}
+                onItemPressed={() => this.productSelected(info.item.id)}
+              />
+            )}
+          />
         </View>
       );
     }
+    return (
+      <View>
+        {productsContent}
+      </View>
+    );
   }
+};
+
+const mapStateToProps = (state) => {
+  return {
+    products: state.orderReducer.products
+  };
+};
+
+export default connect(mapStateToProps, { getProducts })(ProductsScreen);

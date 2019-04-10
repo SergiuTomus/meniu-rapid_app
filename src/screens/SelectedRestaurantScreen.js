@@ -7,10 +7,17 @@ import spinner from '../assets/spinner.gif';
 import { getRestaurant } from '../store/actions/restaurantActions';
 import { API_BASE_URL } from '../api/config';
 import StrikeToTitle from "../components/StrikeToTitle";
+import ShoppingCart from '../components/ShoppingCart';
 
 class SelectedRestaurantScreen extends Component {
   state = {
     showContact: false
+  };
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerRight: (<ShoppingCart navigation={navigation} />)
+    };
   };
 
   componentDidMount() {
@@ -33,7 +40,6 @@ class SelectedRestaurantScreen extends Component {
   };
 
   categorySelected = (id) => {
-    console.log(id);
     this.props.navigation.navigate('Products', { id: id });
   }
 
@@ -121,8 +127,6 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 30,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    // borderWidth: 1,
-    // borderColor: '#156D14',
     shadowColor: 'black',
     shadowOffset: { width: 1, height: 3 },
     shadowOpacity: 0.8,
@@ -133,7 +137,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    selectedRestaurant: state.restaurantsReducer.selectedRestaurant
+    selectedRestaurant: state.restaurantReducer.selectedRestaurant
   };
 };
 
