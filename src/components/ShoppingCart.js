@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class ShoppingCart extends Component {
@@ -8,12 +9,21 @@ class ShoppingCart extends Component {
   }
 
   render() {
+    let count;
+    if (this.props.product_orders.length > 0) {
+      count = (
+        <View style={styles.count}>
+          <Text style={styles.text}>{this.props.product_orders.length}</Text>
+        </View>
+      );
+    } else {
+      count = null;
+    }
+
     return (
       <TouchableOpacity onPress={this.onCartPressed}>
         <View style={styles.cart}>
-          <View style={styles.count}>
-            <Text style={styles.text}>11</Text>
-          </View>
+          {count}
           <Icon name="md-cart" size={30} color="#0B390E" />
         </View>
       </TouchableOpacity>
@@ -56,6 +66,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ShoppingCart;
+const mapStateToProps = (state) => {
+  return {
+    product_orders: state.orderReducer.product_orders
+  };
+};
+
+export default connect(mapStateToProps)(ShoppingCart);
 
 

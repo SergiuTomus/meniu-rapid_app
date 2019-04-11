@@ -1,34 +1,28 @@
 import React, { Component } from "react";
 import { Button, View, Text } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 import { sendOrder } from '../store/actions/orderActions';
 
 class OrderScreen extends Component {
   onSendPress = () => {
+    let price = 0;
+    this.props.product_orders.map((product) => { price += product.single_price; })
+    totalPrice = parseFloat(price).toFixed(2)
+
     const order = {
-      user_id: 2,
-      user_name: "Amalia",
-      user_phone: "0785115628",
-      delivery_address: "o adresa oarecare",
-      restaurant_id: 2,
-      total_price: 40,
-      product_orders: [{
-        product_id: 1,
-        product_name: "Gratar piept de pui",
-        quantity: 1,
-        single_price: 20,
-        order_id: 13
-      },
-      {
-        product_id: 7,
-        product_name: "Pizza Spartan",
-        quantity: 1,
-        single_price: 20,
-        order_id: 13
-      }]
+      user_id: 2,                            // dupa autentificare, din state auth
+      user_name: "Amalia",                   // dupa autentificare
+      user_phone: "0785115628",              // dupa autentificare
+      delivery_address: "o adresa oarecare", // dupa autentificare
+      restaurant_id: this.props.selectedRestaurant.id,
+      total_price: totalPrice,
+      product_orders: this.props.product_orders
     };
-    this.props.sendOrder(order);
+    if (price !== 0) {
+      this.props.sendOrder(order);
+    } else {
+      alert("Pentru a trimite comanda este nevoie sa adaugati cel putin un produs in cos.");
+    }
   }
 
   render() {
@@ -44,4 +38,11 @@ class OrderScreen extends Component {
   }
 }
 
-export default connect(null, { sendOrder })(OrderScreen);
+const mapStateToProps = (state) => {
+  return {
+    product_orders: state.orderReducer.product_orders,
+    selectedRestaurant: state.restaurantReducer.selectedRestaurant // 0741607941 0756418484
+  };
+};
+
+export default connect(mapStateToProps, { sendOrder })(OrderScreen);

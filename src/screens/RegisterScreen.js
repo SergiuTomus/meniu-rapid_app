@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet } from "react-native";
 import CustomButton from '../components/CustomButton';
 import StrikeToTitle from '../components/StrikeToTitle';
 
-class AuthScreen extends Component {
+class RegisterScreen extends Component {
   state = {
     email: '',
     password: '',
@@ -14,14 +14,10 @@ class AuthScreen extends Component {
     this.setState({ [event.target.name]: event.target.value }); // for all inputs
   }
 
-  onButtonPressed = () => {
-    this.props.navigation.navigate('INREGISTRARE');
-  }
-
   render() {
     return (
       <View style={{ marginTop: 80, alignItems: 'center', justifyContent: 'center' }}>
-        <StrikeToTitle title="Autentificare" />
+        <StrikeToTitle title="Inregistrare cont" />
         <TextInput
           style={styles.input}
           placeholder='Email'
@@ -33,11 +29,7 @@ class AuthScreen extends Component {
           value={this.state.password}
           onChange={this.onChange} />
         <View style={{ marginTop: 20, marginBottom: 20 }}>
-          <CustomButton buttonText="AUTENTIFICARE" />
-        </View>
-        <StrikeToTitle title="********" />
-        <View style={{ marginTop: 10 }}>
-          <CustomButton buttonText="CREAZA CONT" buttonPressed={this.onButtonPressed} />
+          <CustomButton buttonText="INREGISTRARE" />
         </View>
       </View>
     );
@@ -55,4 +47,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AuthScreen;
+export default RegisterScreen;

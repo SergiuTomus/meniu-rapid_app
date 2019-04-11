@@ -1,9 +1,8 @@
-import { GET_PRODUCTS, ADD_TO_CART } from "../actions/types";
+import { GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART } from "../actions/types";
 
 const initialState = {
   products: null,
-  order: null,
-  count: 0
+  product_orders: []
 };
 
 export default (state = initialState, action) => {
@@ -16,8 +15,17 @@ export default (state = initialState, action) => {
     case ADD_TO_CART:
       return {
         ...state,
-        // order: action.payload,
-        count: state.count + 1
+        product_orders: [...state.product_orders, action.payload]
+      };
+    case REMOVE_FROM_CART:
+      return {
+        ...state,
+        product_orders: state.product_orders.filter(product_order => product_order.id !== action.payload)
+      };
+    case EMPTY_CART:
+      return {
+        ...state,
+        product_orders: []
       };
     default:
       return state;

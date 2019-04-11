@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_RESTAURANTS, SELECT_RESTAURANT, GET_RESTAURANT, SHOW_CONTACT } from './types';
+import { GET_RESTAURANTS, SELECT_RESTAURANT, GET_RESTAURANT, SHOW_CONTACT, EMPTY_CART } from './types';
 import { API_BASE_URL } from '../../api/config';
 
 // Get restaurants
@@ -12,6 +12,7 @@ export const getRestaurants = () => {
           type: GET_RESTAURANTS,
           payload: res.data.restaurants
         })
+
       )
       .catch(err =>
         dispatch({

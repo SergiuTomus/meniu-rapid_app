@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, FlatList, Image } from "react-native";
 import { connect } from 'react-redux';
-import { getProducts } from '../store/actions/orderActions';
+import { getProducts, addToCart } from '../store/actions/orderActions';
 import spinner from '../assets/spinner.gif';
 import Product from '../components/Product';
 import ShoppingCart from '../components/ShoppingCart';
@@ -18,8 +18,13 @@ class ProductsScreen extends Component {
     this.props.getProducts(id);
   }
 
-  productSelected = (id) => {
-
+  productSelected = (product) => {
+    const product_order = {
+      product_id: product.id,
+      product_name: product.name,
+      single_price: product.price
+    };
+    this.props.addToCart(product_order);
   }
 
   render() {
@@ -41,7 +46,7 @@ class ProductsScreen extends Component {
               <Product
                 productName={info.item.name}
                 key={info.item.id}
-                onItemPressed={() => this.productSelected(info.item.id)}
+                onItemPressed={() => this.productSelected(info.item)}
               />
             )}
           />
@@ -62,4 +67,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getProducts })(ProductsScreen);
+export default connect(mapStateToProps, { getProducts, addToCart })(ProductsScreen);
