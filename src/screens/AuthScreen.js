@@ -11,7 +11,7 @@ class AuthScreen extends Component {
   };
 
   onChange = event => {
-    this.setState({ [event.target.name]: event.target.value }); // for all inputs
+    // this.setState({ [event.target.name]: event.target.value }); // for all inputs
   }
 
   onButtonPressed = () => {
@@ -20,7 +20,7 @@ class AuthScreen extends Component {
 
   render() {
     return (
-      <View style={{ marginTop: 80, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, marginTop: -150, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}>
         <StrikeToTitle title="Autentificare" />
         <TextInput
           style={styles.input}
