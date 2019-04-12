@@ -10,8 +10,18 @@ class AuthScreen extends Component {
     errors: {}
   };
 
-  onChange = event => {
-    // this.setState({ [event.target.name]: event.target.value }); // for all inputs
+  onSubmit = () => {
+    // const user = {
+    //   name: this.state.name,
+    //   email: this.state.email,
+    //   password: this.state.password,
+    //   password2: this.state.password2,
+    //   phone: this.state.phone,
+    //   delivery_address: this.state.delivery_address
+    // }
+    // this.props.registerUser(user);
+    alert("Autentificare cu succes"); // tr adus mesajul din API
+    this.props.navigation.navigate('RESTAURANTE');
   }
 
   onButtonPressed = () => {
@@ -20,20 +30,20 @@ class AuthScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, marginTop: -150, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}>
+      <View style={{ flex: 1, marginTop: -40, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}>
         <StrikeToTitle title="Autentificare" />
         <TextInput
           style={styles.input}
           placeholder='Email'
           value={this.state.email}
-          onChange={this.onChange} />
+          onChangeText={(value) => this.setState({ email: value })} />
         <TextInput
           style={styles.input}
-          placeholder='Password'
+          placeholder='Parola'
           value={this.state.password}
-          onChange={this.onChange} />
+          onChangeText={(value) => this.setState({ password: value })} />
         <View style={{ marginTop: 20, marginBottom: 20 }}>
-          <CustomButton buttonText="AUTENTIFICARE" />
+          <CustomButton buttonText="AUTENTIFICARE" buttonPressed={this.onSubmit} />
         </View>
         <StrikeToTitle title="********" />
         <View style={{ marginTop: 10 }}>

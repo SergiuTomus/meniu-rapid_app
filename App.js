@@ -6,8 +6,7 @@ import SelectedRestaurantScreen from './src/screens/SelectedRestaurantScreen';
 import ProductsScreen from './src/screens/ProductsScreen';
 import DeliveryAddressesScreen from './src/screens/DeliveryAddressesScreen';
 import OrderScreen from "./src/screens/OrderScreen";
-import ShoppingCart from './src/components/ShoppingCart'
-import Icon from 'react-native-vector-icons/Ionicons';
+import RegisterScreen from './src/screens/RegisterScreen';
 
 const RestaurantsStackNavigator = createStackNavigator(
   {
@@ -29,6 +28,7 @@ const AppDrawerNavigator = createDrawerNavigator(
   {
     RESTAURANTE: RestaurantsStackNavigator,
     AUTENTIFICARE: AuthScreen,
+    INREGISTRARE: RegisterScreen,
     'ADRESE DE LIVRARE': DeliveryAddressesScreen
 
   },
