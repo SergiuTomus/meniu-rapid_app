@@ -1,4 +1,4 @@
-import { GET_RESTAURANTS, SELECT_RESTAURANT, GET_RESTAURANT, SHOW_CONTACT } from '../actions/types';
+import { GET_RESTAURANTS, GET_RESTAURANT, DESELECT_RESTAURANT } from '../actions/types';
 import { API_BASE_URL } from '../../api/config'
 
 const initialState = {
@@ -23,6 +23,11 @@ const restaurantsReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedRestaurant: action.payload
+      };
+    case DESELECT_RESTAURANT:
+      return {
+        ...state,
+        selectedRestaurant: null
       };
     default:
       return state;

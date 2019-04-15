@@ -1,25 +1,25 @@
 import axios from 'axios';
-import { GET_RESTAURANTS, SELECT_RESTAURANT, GET_RESTAURANT, SHOW_CONTACT, EMPTY_CART } from './types';
+import { GET_RESTAURANTS, SELECT_RESTAURANT, GET_RESTAURANT, SHOW_CONTACT, DESELECT_RESTAURANT } from './types';
 import { API_BASE_URL } from '../../api/config';
+import { startLoading, stopLoading } from './loadingActions';
 
 // Get restaurants
 export const getRestaurants = () => {
   return (dispatch) => {
+    dispatch(startLoading());
     axios
       .get(`${API_BASE_URL}/client/restaurants`)
-      .then(res =>
+      .then(res => {
         dispatch({
           type: GET_RESTAURANTS,
           payload: res.data.restaurants
-        })
-
-      )
-      .catch(err =>
-        dispatch({
-          type: GET_ALL_ORDERS,
-          payload: null
-        })
-      );
+        });
+        dispatch(stopLoading());
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(stopLoading());
+      });
   };
 };
 
@@ -30,23 +30,32 @@ export const selectRestaurant = (key) => {
   };
 };
 
+export const deselectRestaurant = () => {
+  return {
+    type: DESELECT_RESTAURANT
+  };
+};
+
 // Get restaurant data and categories
 export const getRestaurant = (id) => {
   return (dispatch) => {
+    dispatch(startLoading());
     axios
       .get(`${API_BASE_URL}/client/restaurants/${id}`)
-      .then(res =>
+      .then(res => {
         dispatch({
           type: GET_RESTAURANT,
           payload: res.data.restaurant[0]
-        })
-      )
-      .catch(err =>
+        });
+        dispatch(stopLoading());
+      })
+      .catch(err => {
         dispatch({
           type: GET_RESTAURANT,
           payload: null
-        })
-      );
+        });
+        dispatch(stopLoading());
+      });
   };
 };
 

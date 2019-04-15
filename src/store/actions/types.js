@@ -1,8 +1,6 @@
 export const GET_RESTAURANTS = 'GET_RESTAURANTS';
-export const SELECT_RESTAURANT = 'SELECT_RESTAURANT';
+export const DESELECT_RESTAURANT = 'DESELECT_RESTAURANT';
 export const GET_RESTAURANT = 'GET_RESTAURANT';
-
-export const SHOW_CONTACT = 'SHOW_CONTACT';
 
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const ADD_TO_CART = 'ADD_TO_CART';
@@ -10,4 +8,7 @@ export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const EMPTY_CART = 'EMPTY_CART';
 
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+
+export const START_LOADING = 'START_LOADING';
+export const STOP_LOADING = 'STOP_LOADING';
 

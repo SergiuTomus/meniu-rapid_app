@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import { View, TextInput, StyleSheet } from "react-native";
 import CustomButton from '../components/CustomButton';
 import StrikeToTitle from '../components/StrikeToTitle';
+import { loginUser } from '../store/actions/authActions';
 
 class AuthScreen extends Component {
   state = {
@@ -11,15 +13,11 @@ class AuthScreen extends Component {
   };
 
   onSubmit = () => {
-    // const user = {
-    //   name: this.state.name,
-    //   email: this.state.email,
-    //   password: this.state.password,
-    //   password2: this.state.password2,
-    //   phone: this.state.phone,
-    //   delivery_address: this.state.delivery_address
-    // }
-    // this.props.registerUser(user);
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    this.props.loginUser(user);
     alert("Autentificare cu succes"); // tr adus mesajul din API
     this.props.navigation.navigate('RESTAURANTE');
   }
@@ -65,4 +63,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AuthScreen;
+export default connect(null, { loginUser })(AuthScreen);

@@ -6,7 +6,7 @@ const restaurantList = props => {
   return <FlatList
     style={styles.listContainer}
     data={props.restaurants}   // data tr sa fie un array
-    renderItem={(info) => (
+    renderItem={(info) => (    // info - obiect, || { item, index }
       <Restaurant
         restaurantName={info.item.name}
         restaurantImage={info.item.image}

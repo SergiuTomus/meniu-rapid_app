@@ -29,7 +29,7 @@ const AppDrawerNavigator = createDrawerNavigator(
     RESTAURANTE: RestaurantsStackNavigator,
     AUTENTIFICARE: AuthScreen,
     INREGISTRARE: RegisterScreen,
-    'ADRESE DE LIVRARE': DeliveryAddressesScreen
+    'ADRESA DE LIVRARE': DeliveryAddressesScreen
 
   },
   {

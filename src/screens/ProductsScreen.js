@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { View, FlatList, Image } from "react-native";
+import { View, FlatList, ActivityIndicator } from "react-native";
 import { connect } from 'react-redux';
 import { getProducts, addToCart } from '../store/actions/orderActions';
-import spinner from '../assets/spinner.gif';
 import Product from '../components/Product';
 import ShoppingCart from '../components/ShoppingCart';
 
@@ -32,7 +31,7 @@ class ProductsScreen extends Component {
     if (this.props.products === null) {
       productsContent = (
         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={spinner} />
+          <ActivityIndicator size={80} color="#156D14" />
         </View>
       );
     } else {
@@ -63,7 +62,8 @@ class ProductsScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.orderReducer.products
+    products: state.orderReducer.products,
+    loading: state.loadingReducer.loading
   };
 };
 

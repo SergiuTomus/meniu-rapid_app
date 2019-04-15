@@ -6,10 +6,10 @@ import jwt_decode from 'jwt-decode';
 import { API_BASE_URL } from '../../api/config';
 
 // Set login user
-export const setCurrentUser = (decoded) => {
+export const setCurrentUser = (currentUser) => {
   return {
     type: SET_CURRENT_USER,
-    payload: decoded
+    payload: currentUser
   };
 };
 
@@ -18,18 +18,12 @@ export const registerUser = (user) => {
   return (dispatch) => {
     axios.post(`${API_BASE_URL}/client/register`, user)
       .then(result => {
-        console.log(result.data);
+        alert(result.data.message);
         // dispatch();
-        // sau inainteaza la alt screen/ in Practical: call startMainTabs();
       })
       .catch(err => {
-        console.log(err);
-        //  alert("Scriu un text legat de eroare");
-        // sau
-        // dispatch({
-        //   type: GET_ERRORS,
-        //   payload: err.response.data
-        // });
+        console.log(err.response.data);
+        alert("Inregistrare esuata");
       });
   }
 }
@@ -40,11 +34,12 @@ export const loginUser = (user) => {
     axios.post(`${API_BASE_URL}/client/login`, user)
       .then(result => {
         console.log(result.data);
-        const { token } = result.data;
+        const { token, user } = result.data;
         AsyncStorage.setItem('jwtToken', token); // set token to localStorage
         setAuthHeader(token);       // Set token to Authorization header
         const decoded = jwt_decode(token);
-        dispatch(setCurrentUser(decoded));
+        const currentUser = { ...decoded, ...user }
+        dispatch(setCurrentUser(currentUser));
       })
       .catch(err => {
         console.log(err);

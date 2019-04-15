@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, ActivityIndicator } from "react-native";
 import { connect } from 'react-redux';
 import RestaurantList from '../components/RestaurantList';
-import { getRestaurants } from '../store/actions/restaurantActions';
+import { getRestaurants, deselectRestaurant } from '../store/actions/restaurantActions';
 import { emptyCart } from '../store/actions/orderActions';
 
 class RestaurantsScreen extends Component {
@@ -12,17 +12,28 @@ class RestaurantsScreen extends Component {
   }
 
   onSelectRestaurant = (id) => {
+    this.props.deselectRestaurant();
     this.props.emptyCart();
     this.props.navigation.navigate('SelectedRestaurant', { id: id });
   }
 
   render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+    let restaurants;
+    if (this.props.loading) {
+      restaurants = (
+        <ActivityIndicator size={80} color="#156D14" />
+      );
+    } else {
+      restaurants = (
         <RestaurantList
           restaurants={this.props.restaurants}
           onItemSelected={this.onSelectRestaurant}
         />
+      );
+    }
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+        {restaurants}
       </View>
     );
   }
@@ -31,8 +42,9 @@ class RestaurantsScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     restaurants: state.restaurantReducer.restaurants,
-    product_orders: state.orderReducer.product_orders
+    product_orders: state.orderReducer.product_orders,
+    loading: state.loadingReducer.loading
   };
 };
 
-export default connect(mapStateToProps, { getRestaurants, emptyCart })(RestaurantsScreen);
+export default connect(mapStateToProps, { getRestaurants, emptyCart, deselectRestaurant })(RestaurantsScreen);

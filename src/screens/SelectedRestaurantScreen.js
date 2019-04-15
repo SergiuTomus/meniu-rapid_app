@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FlatList, View, Image, Text, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
+import { FlatList, View, Image, Text, TouchableOpacity, StyleSheet, ImageBackground, ActivityIndicator } from "react-native";
 import { connect } from 'react-redux';
 import InfoModal from '../components/InfoModal';
 import Category from '../components/Category';
@@ -47,8 +47,8 @@ class SelectedRestaurantScreen extends Component {
     let restaurantContent;
     if (this.props.selectedRestaurant === null) {
       restaurantContent = (
-        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={spinner} style={styles.restaurantImage} />
+        <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 100 }}>
+          <ActivityIndicator size={80} color="#156D14" />
         </View>
       );
     } else {
@@ -137,7 +137,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    selectedRestaurant: state.restaurantReducer.selectedRestaurant
+    selectedRestaurant: state.restaurantReducer.selectedRestaurant,
+    loading: state.loadingReducer.loading
   };
 };
 
