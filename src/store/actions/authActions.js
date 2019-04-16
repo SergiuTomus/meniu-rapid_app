@@ -46,3 +46,16 @@ export const loginUser = (user) => {
       });
   };
 }
+
+// Logout
+export const logoutUser = () => {
+  return (dispatch) => {
+    AsyncStorage.removeItem('jwtToken'); // remove token from localStorage
+    setAuthHeader(false);                // remove token from Authorization header 
+    dispatch(setCurrentUser({}));        // set current user to {}
+  }
+}
+
+export const setToken = () => {
+
+}

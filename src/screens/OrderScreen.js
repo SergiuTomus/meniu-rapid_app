@@ -16,29 +16,21 @@ class OrderScreen extends Component {
     let price = 0;
     this.props.product_orders.map((product) => { price += product.single_price; })
     totalPrice = parseFloat(price).toFixed(2)
-
-    console.log('user', this.props.auth.user);
     const { user } = this.props.auth;
 
-    if (this.props.auth.authenticated) {
-      const order = {
-        user_name: user.name,                   // dupa autentificare
-        user_phone: user.phone,              // dupa autentificare
-        delivery_address: user.delivery_address, // dupa autentificare
-        restaurant_id: this.props.selectedRestaurant.id,
-        total_price: totalPrice,
-        product_orders: this.props.product_orders
-      };
-      if (price !== 0) {
-        this.props.sendOrder(order);
-      } else {
-        alert("Pentru a trimite comanda este nevoie sa adaugati cel putin un produs in cos.");
-      }
+    const order = {
+      user_name: user.name,                   // dupa autentificare
+      user_phone: user.phone,              // dupa autentificare
+      delivery_address: user.delivery_address, // dupa autentificare
+      restaurant_id: this.props.selectedRestaurant.id,
+      total_price: totalPrice,
+      product_orders: this.props.product_orders
+    };
+    if (price !== 0) {
+      this.props.sendOrder(order);
     } else {
-      alert("Pentru a trimite comanda trebuie autentificare");
-      this.props.navigation.navigate('AUTENTIFICARE');
+      alert("Pentru a trimite comanda este nevoie sa adaugati cel putin un produs in cos.");
     }
-
   }
 
   render() {

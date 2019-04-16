@@ -17,9 +17,16 @@ class AuthScreen extends Component {
       email: this.state.email,
       password: this.state.password
     }
-    this.props.loginUser(user);
+
     alert("Autentificare cu succes"); // tr adus mesajul din API
-    this.props.navigation.navigate('RESTAURANTE');
+    this.props.loginUser(user);
+    // this.props.navigation.navigate('RESTAURANTE');
+    // if (this.props.product_orders[0] === undefined) {
+    //   this.props.loginUser(user);
+    //   this.props.navigation.navigate('RESTAURANTE');
+    // } else {
+
+    // }
   }
 
   onButtonPressed = () => {
@@ -63,4 +70,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, { loginUser })(AuthScreen);
+const mapStateToProps = (state) => {
+  return {
+    product_orders: state.orderReducer.product_orders
+  };
+};
+
+export default connect(mapStateToProps, { loginUser })(AuthScreen);

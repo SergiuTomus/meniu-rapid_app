@@ -12,9 +12,14 @@ class RestaurantsScreen extends Component {
   }
 
   onSelectRestaurant = (id) => {
-    this.props.deselectRestaurant();
-    this.props.emptyCart();
-    this.props.navigation.navigate('SelectedRestaurant', { id: id });
+    if (this.props.authenticated) {
+      this.props.deselectRestaurant();
+      this.props.emptyCart();
+      this.props.navigation.navigate('SelectedRestaurant', { id: id });
+    } else {
+      alert("Trebuie autentificare pentru a selecta si comanda produse din restaurante");
+      this.props.navigation.navigate('AUTENTIFICARE');
+    }
   }
 
   render() {
@@ -43,7 +48,8 @@ const mapStateToProps = (state) => {
   return {
     restaurants: state.restaurantReducer.restaurants,
     product_orders: state.orderReducer.product_orders,
-    loading: state.loadingReducer.loading
+    loading: state.loadingReducer.loading,
+    authenticated: state.authReducer.authenticated
   };
 };
 
