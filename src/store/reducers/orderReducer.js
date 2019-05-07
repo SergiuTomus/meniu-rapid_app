@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART } from "../actions/types";
+import { GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART, EMPTY_PRODUCTS } from "../actions/types";
 
 const initialState = {
   products: null,
@@ -11,6 +11,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         products: action.payload
+      };
+    case EMPTY_PRODUCTS:
+      return {
+        ...state,
+        products: null
       };
     case ADD_TO_CART:
       return {

@@ -44,6 +44,8 @@ class ProductsScreen extends Component {
             renderItem={(info) => (
               <Product
                 productName={info.item.name}
+                productPrice={info.item.price}
+                productImage={info.item.image_url}
                 key={info.item.id}
                 onItemPressed={() => this.productSelected(info.item)}
               />

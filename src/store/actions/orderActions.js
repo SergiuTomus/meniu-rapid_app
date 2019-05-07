@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PRODUCTS, ADD_TO_CART, EMPTY_CART } from './types';
+import { GET_PRODUCTS, ADD_TO_CART, EMPTY_CART, EMPTY_PRODUCTS } from './types';
 import { API_BASE_URL } from '../../api/config';
 import { startLoading, stopLoading } from './loadingActions';
 
@@ -23,6 +23,12 @@ export const getProducts = (id) => {
         });
         dispatch(stopLoading());
       });
+  };
+};
+
+export const emptyProducts = () => {
+  return {
+    type: EMPTY_PRODUCTS
   };
 };
 

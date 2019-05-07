@@ -5,7 +5,13 @@ const product = (props) => {
   return (
     <TouchableOpacity onPress={() => props.onItemPressed()}>
       <View style={styles.product} >
-        <Text style={{ fontSize: 20, color: '#156D14' }}>{props.productName}</Text>
+        <View style={{ width: "30%", backgroundColor: "red"}}>
+          <Text style={{ fontSize: 10, color: '#156D14' }}>{props.productName}</Text>
+        </View>
+        <View style={{ width: "70%", backgroundColor: "yellow", alignItems: "center"}}>
+          <Text style={{ fontSize: 20, color: '#156D14' }}>{props.productName}</Text>
+          <Text style={{ fontSize: 17, color: '#156D14' }}>Pret: {props.productPrice} lei</Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -18,11 +24,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f5",
     marginTop: 6,
     marginBottom: 4,
-    marginRight: 80,
-    marginLeft: 80,
+    marginLeft: "5%",
     flexDirection: "row",
     alignItems: "center",
-    height: 45,
+    height: 90,
+    width: "90%",
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     borderTopLeftRadius: 20,

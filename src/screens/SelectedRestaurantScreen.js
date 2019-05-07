@@ -3,8 +3,8 @@ import { FlatList, View, Image, Text, TouchableOpacity, StyleSheet, ImageBackgro
 import { connect } from 'react-redux';
 import InfoModal from '../components/InfoModal';
 import Category from '../components/Category';
-import spinner from '../assets/spinner.gif';
 import { getRestaurant } from '../store/actions/restaurantActions';
+import { emptyProducts } from '../store/actions/orderActions';
 import { API_BASE_URL } from '../api/config';
 import StrikeToTitle from "../components/StrikeToTitle";
 import ShoppingCart from '../components/ShoppingCart';
@@ -40,6 +40,7 @@ class SelectedRestaurantScreen extends Component {
   };
 
   categorySelected = (id) => {
+    this.props.emptyProducts();
     this.props.navigation.navigate('Products', { id: id });
   }
 
@@ -142,4 +143,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getRestaurant })(SelectedRestaurantScreen);
+export default connect(mapStateToProps, { getRestaurant, emptyProducts })(SelectedRestaurantScreen);
