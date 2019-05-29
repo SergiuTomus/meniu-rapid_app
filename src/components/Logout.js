@@ -11,7 +11,6 @@ class Logout extends Component {
   }
 
   render() {
-    console.log(this.props.user.name);
     return (
       <SafeAreaView style={{ backgroundColor: '#c6ecd8', flex: 1 }} forceInset={{ top: 'always', horizontal: 'never' }}>
         <View style={{ flexDirection: 'row', backgroundColor: "#156D14", height: 80 }}>

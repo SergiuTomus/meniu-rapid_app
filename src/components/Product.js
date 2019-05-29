@@ -1,19 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const product = (props) => {
   return (
-    <TouchableOpacity onPress={() => props.onItemPressed()}>
-      <View style={styles.product} >
-        <View style={{ width: "30%", backgroundColor: "red"}}>
-          <Text style={{ fontSize: 10, color: '#156D14' }}>{props.productName}</Text>
-        </View>
-        <View style={{ width: "70%", backgroundColor: "yellow", alignItems: "center"}}>
-          <Text style={{ fontSize: 20, color: '#156D14' }}>{props.productName}</Text>
-          <Text style={{ fontSize: 17, color: '#156D14' }}>Pret: {props.productPrice} lei</Text>
-        </View>
+    <View style={styles.product} >
+      <View style={{ width: "45%" }}>
+        <Image source={{ uri: `${props.productImage}` }} style={styles.productImage} />
       </View>
-    </TouchableOpacity>
+      <View style={{ width: "55%", alignItems: "center" }}>
+        <Text style={{ fontSize: 20, color: '#156D14' }}>{props.productName}</Text>
+        <Text style={{ fontSize: 17, color: '#156D14' }}>Pret: {props.productPrice} lei</Text>
+        <TouchableOpacity onPress={() => props.onItemPressed()} style={styles.addToCart}>
+          <Icon name="plus" size={17} color="white" />
+        </TouchableOpacity>
+      </View>
+    </View>
+
   );
 };
 
@@ -27,7 +30,7 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
     flexDirection: "row",
     alignItems: "center",
-    height: 90,
+    height: 115,
     width: "90%",
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
@@ -40,6 +43,26 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 4,
     elevation: 2,
+  },
+  productImage: {
+    marginRight: 16,
+    height: 100,
+    width: "100%",
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15
+  },
+  addToCart: {
+    backgroundColor: "#156D14",
+    width: "55%",
+    marginTop: 10,
+    alignItems: "center",
+    padding: 3,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
   }
 });
 

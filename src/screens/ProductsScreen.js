@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getProducts, addToCart } from '../store/actions/orderActions';
 import Product from '../components/Product';
 import ShoppingCart from '../components/ShoppingCart';
+import { API_BASE_URL } from '../api/config';
 
 class ProductsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -35,11 +36,20 @@ class ProductsScreen extends Component {
         </View>
       );
     } else {
+      let products = this.props.products.Products.map(item => {
+        return {
+          key: item.id.toString(),
+          restaurant_id: item.restaurant_id,
+          name: item.name,
+          price: item.price,
+          image_url: `${API_BASE_URL}/${item.image_url}`
+        }
+      });
       productsContent = (
         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
           <FlatList
-            style={{ width: '100%', marginTop: 5, textAlign: 'center', height: 320 }}
-            data={this.props.products.Products}
+            style={{ width: '100%', marginTop: 5, textAlign: 'center', height: '100%' }}
+            data={products}
             keyExtractor={(item, index) => index.toString()}
             renderItem={(info) => (
               <Product

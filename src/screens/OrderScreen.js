@@ -19,8 +19,8 @@ class OrderScreen extends Component {
     const { user } = this.props.auth;
 
     const order = {
-      user_name: user.name,                  
-      user_phone: user.phone,             
+      user_name: user.name,
+      user_phone: user.phone,
       delivery_address: user.delivery_address,
       restaurant_id: this.props.selectedRestaurant.id,
       total_price: totalPrice,
@@ -38,15 +38,14 @@ class OrderScreen extends Component {
     let products = this.props.product_orders.map((product, index) => {
       price += product.single_price;
       totalPrice = parseFloat(price).toFixed(2);
-      console.log( product, "pret total", totalPrice, typeof product.single_price);
       return (
         <View style={{ flexDirection: "row", width: "100%" }} key={index}>
-          <View style={{marginRight: 2, width: "73%"}}>
-            <Text style={{fontSize: 18, marginLeft: 20}}>* {product.product_name}</Text>
+          <View style={{ marginRight: 2, width: "73%" }}>
+            <Text style={{ fontSize: 18, marginLeft: 20 }}>* {product.product_name}</Text>
           </View>
-          <View style={{marginRight: 2, alignSelf: 'flex-end', width: "27%" }}>
-            <Text style={{fontSize: 18, textAlign: 'right', marginRight: 10}}>{product.single_price} lei</Text>
-          </View> 
+          <View style={{ marginRight: 2, alignSelf: 'flex-end', width: "27%" }}>
+            <Text style={{ fontSize: 18, textAlign: 'right', marginRight: 10 }}>{product.single_price} lei</Text>
+          </View>
         </View>
       );
     });
@@ -67,11 +66,11 @@ class OrderScreen extends Component {
         <View style={styles.order} >
           <Text style={{ fontSize: 22, color: '#156D14' }}>COMANDA MEA</Text>
           <Text style={{ fontSize: 18, marginTop: 10, marginBottom: 10 }}>Restaurant {this.props.selectedRestaurant.name}</Text>
-          <StrikeToTitle title="PRODUSE SELECTATE"/>
-          <View style={{marginTop: 10, width: "100%"}}>
+          <StrikeToTitle title="PRODUSE SELECTATE" />
+          <View style={{ marginTop: 10, width: "100%" }}>
             {products}
           </View>
-          <StrikeToTitle title="PRET TOTAL"/>
+          <StrikeToTitle title="PRET TOTAL" />
           <Text style={{ fontSize: 20, fontWeight: "bold" }}>{totalPrice} lei</Text>
         </View>
         {sendOrder}

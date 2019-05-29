@@ -33,7 +33,6 @@ export const loginUser = (user) => {
   return (dispatch) => {  // we have dispatch because we use redux-thunk
     axios.post(`${API_BASE_URL}/client/login`, user)
       .then(result => {
-        console.log(result.data);
         const { token, user } = result.data;
         AsyncStorage.setItem('jwtToken', token); // set token to localStorage
         setAuthHeader(token);       // Set token to Authorization header

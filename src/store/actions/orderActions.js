@@ -17,10 +17,7 @@ export const getProducts = (id) => {
         dispatch(stopLoading());
       })
       .catch(err => {
-        dispatch({
-          type: GET_PRODUCTS,
-          payload: null
-        });
+        console.log(err);
         dispatch(stopLoading());
       });
   };

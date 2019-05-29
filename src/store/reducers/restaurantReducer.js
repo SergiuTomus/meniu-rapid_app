@@ -12,9 +12,12 @@ const restaurantsReducer = (state = initialState, action) => {
       return {
         ...state,
         restaurants: action.payload.map(item => {
+          console.log(item);
           return {
             key: item.id.toString(),
             name: item.restaurant_name,
+            minimum_order: item.minimum_order,
+            cost_delivery: item.cost_delivery,
             image: `${API_BASE_URL}/${item.image_url}`
           }
         })
