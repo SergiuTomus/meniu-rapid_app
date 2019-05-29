@@ -17,7 +17,7 @@ class OrderScreen extends Component {
 
   onSendPress = (totalPrice) => {
     const { user } = this.props.auth;
-
+ 
     const order = {
       user_name: user.name,
       user_phone: user.phone,
@@ -26,7 +26,8 @@ class OrderScreen extends Component {
       total_price: totalPrice,
       product_orders: this.props.product_orders
     };
-    if (price !== 0) {
+    if (totalPrice !== 0) {
+      console.warn(this.props.product_orders)
       this.props.sendOrder(order);
     } else {
       alert("Pentru a trimite comanda este nevoie sa adaugati cel putin un produs in cos.");

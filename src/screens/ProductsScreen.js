@@ -38,13 +38,14 @@ class ProductsScreen extends Component {
     } else {
       let products = this.props.products.Products.map(item => {
         return {
-          key: item.id.toString(),
+          id: item.id,
           restaurant_id: item.restaurant_id,
           name: item.name,
           price: item.price,
           image_url: `${API_BASE_URL}/${item.image_url}`
         }
       });
+      console.warn(products);
       productsContent = (
         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
           <FlatList

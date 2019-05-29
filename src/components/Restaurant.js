@@ -11,7 +11,7 @@ const restaurant = (props) => {
           <Text style={{ color: "#156D14", fontSize: 19, marginBottom: 6 }}>{props.restaurantName}</Text>
           <View style={{ flexDirection: "row", paddingTop: 5 }}>
             <Icon name="money" size={18} color="green" style={{ paddingTop: 3 }} />
-            <Text style={{ color: "#156D14", fontSize: 16, marginLeft: 4, marginRight: 40 }}>min: {props.minOrder} lei</Text>
+            <Text style={{ color: "#156D14", fontSize: 16, marginLeft: 4, marginRight: 12 }}>min: {props.minOrder} lei</Text>
             <Icon name="truck" size={18} color="green" style={{ paddingTop: 2, transform: [{ rotateY: '180deg' }] }} />
             <Text style={{ color: "#156D14", fontSize: 16, marginLeft: 2 }}> {props.costDelivery == 0 ? "gratis" : props.costDelivery + " lei"}</Text>
           </View>
