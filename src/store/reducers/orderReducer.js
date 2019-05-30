@@ -1,8 +1,9 @@
-import { GET_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART, EMPTY_PRODUCTS } from "../actions/types";
+import { GET_PRODUCTS, GET_ORDERS, ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART, EMPTY_PRODUCTS } from "../actions/types";
 
 
 const initialState = {
   products: null,
+  orders: null,
   product_orders: []
 };
 
@@ -18,6 +19,11 @@ export default (state = initialState, action) => {
         ...state,
         products: null
       };
+    case GET_ORDERS:
+      return {
+        ...state,
+        orders: action.payload
+      }
     case ADD_TO_CART:
       return {
         ...state,

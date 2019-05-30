@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { createDrawerNavigator, createStackNavigator, createAppContainer, SafeAreaView, DrawerItems } from "react-navigation";
-import { View, Text, ScrollView, Button, TouchableOpacity } from "react-native";
 import { connect } from 'react-redux';
 import AuthScreen from './src/screens/AuthScreen';
 import RestaurantsScreen from './src/screens/RestaurantsScreen';
 import SelectedRestaurantScreen from './src/screens/SelectedRestaurantScreen';
 import ProductsScreen from './src/screens/ProductsScreen';
-import DeliveryAddressesScreen from './src/screens/DeliveryAddressesScreen';
+import UserOrdersScreen from './src/screens/UserOrdersScreen';
 import OrderScreen from "./src/screens/OrderScreen";
 import RegisterScreen from './src/screens/RegisterScreen';
 import Logout from './src/components/Logout';
@@ -31,7 +30,7 @@ const RestaurantsStackNavigator = createStackNavigator(
 const AuthDrawerNavigator = createDrawerNavigator(
   {
     RESTAURANTE: RestaurantsStackNavigator,
-    'ADRESA DE LIVRARE': DeliveryAddressesScreen
+    'STARE COMENZI': UserOrdersScreen
   },
   {
     initialRouteName: "RESTAURANTE",
@@ -43,7 +42,8 @@ const AppDrawerNavigator = createDrawerNavigator(
   {
     RESTAURANTE: RestaurantsStackNavigator,
     AUTENTIFICARE: AuthScreen,
-    INREGISTRARE: RegisterScreen
+    INREGISTRARE: RegisterScreen,
+    'STARE COMENZI': UserOrdersScreen
   },
   {
     initialRouteName: "RESTAURANTE",

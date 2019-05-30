@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { GET_PRODUCTS, ADD_TO_CART, EMPTY_CART, EMPTY_PRODUCTS } from './types';
+import { GET_PRODUCTS, GET_ORDERS, ADD_TO_CART, EMPTY_CART, EMPTY_PRODUCTS } from './types';
 import { API_BASE_URL } from '../../api/config';
 import { startLoading, stopLoading } from './loadingActions';
 
-// Get received orders
+// Get products
 export const getProducts = (id) => {
   return (dispatch) => {
     dispatch(startLoading());
@@ -13,6 +13,26 @@ export const getProducts = (id) => {
         dispatch({
           type: GET_PRODUCTS,
           payload: res.data.category[0]
+        });
+        dispatch(stopLoading());
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(stopLoading());
+      });
+  };
+};
+
+// Get user orders
+export const getOrders = (id) => {
+  return (dispatch) => {
+    dispatch(startLoading());
+    axios
+      .get(`${API_BASE_URL}/client/user-orders/${id}`) // user id
+      .then(res => {
+        dispatch({
+          type: GET_ORDERS,
+          payload: res.data.user_orders
         });
         dispatch(stopLoading());
       })
