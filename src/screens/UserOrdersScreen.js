@@ -8,7 +8,7 @@ import Order from '../components/Order';
 class UserOrdersScreen extends Component {
   componentDidMount() {
     user_id = 1,
-      this.props.getOrders(user_id);
+    this.props.getOrders(user_id);
   }
 
   render() {
@@ -20,7 +20,6 @@ class UserOrdersScreen extends Component {
         </View>
       );
     } else {
-      console.log(this.props.orders);
       let orders = this.props.orders;
       ordersContent = (
         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -31,7 +30,10 @@ class UserOrdersScreen extends Component {
             renderItem={(info) => (
               <Order
                 key={info.item.id}
+                number={info.item.id}
+                restaurantName={info.item.Restaurant.name}
                 status={info.item.status}
+                products={info.item.Product_Orders}
                 totalPrice={info.item.total_price}
               />
             )}

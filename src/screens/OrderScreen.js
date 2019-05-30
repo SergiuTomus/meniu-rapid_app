@@ -5,8 +5,7 @@ import { sendOrder } from '../store/actions/orderActions';
 import ShoppingCart from '../components/ShoppingCart';
 import StrikeToTitle from '../components/StrikeToTitle';
 import CustomButton from '../components/CustomButton';
-import strikeToTitle from './../components/StrikeToTitle';
-import restaurant from './../components/Restaurant';
+
 
 class OrderScreen extends Component {
   static navigationOptions = ({ navigation }) => {
