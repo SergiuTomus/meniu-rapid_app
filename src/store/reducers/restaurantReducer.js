@@ -12,7 +12,6 @@ const restaurantsReducer = (state = initialState, action) => {
       return {
         ...state,
         restaurants: action.payload.map(item => {
-          console.log(item);
           return {
             key: item.id.toString(),
             name: item.restaurant_name,

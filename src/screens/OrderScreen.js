@@ -17,7 +17,7 @@ class OrderScreen extends Component {
 
   onSendPress = (totalPrice) => {
     const { user } = this.props.auth;
- 
+
     const order = {
       user_name: user.name,
       user_phone: user.phone,
@@ -27,7 +27,6 @@ class OrderScreen extends Component {
       product_orders: this.props.product_orders
     };
     if (totalPrice !== 0) {
-      console.warn(this.props.product_orders)
       this.props.sendOrder(order);
     } else {
       alert("Pentru a trimite comanda este nevoie sa adaugati cel putin un produs in cos.");
@@ -53,7 +52,10 @@ class OrderScreen extends Component {
     let sendOrder = (
       <CustomButton
         buttonText="TRIMITE COMANDA"
-        buttonPressed={() => this.onSendPress(totalPrice)}
+        buttonPressed={() => {
+          this.onSendPress(totalPrice);
+          this.props.navigation.navigate('Restaurants');
+        }}
       />
     );
     if (this.props.loading) {

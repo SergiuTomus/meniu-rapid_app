@@ -45,7 +45,6 @@ class ProductsScreen extends Component {
           image_url: `${API_BASE_URL}/${item.image_url}`
         }
       });
-      console.warn(products);
       productsContent = (
         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
           <FlatList

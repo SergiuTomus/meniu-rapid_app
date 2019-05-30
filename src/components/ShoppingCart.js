@@ -5,7 +5,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 class ShoppingCart extends Component {
   onCartPressed = () => {
-    this.props.navigation.navigate('Order');
+    if (this.props.product_orders.length > 0) {
+      this.props.navigation.navigate('Order');
+    } else {
+      alert("Pentru a vedea comanda este nevoie sa adaugati cel putin un produs in cos.");
+    }
   }
 
   render() {
