@@ -1,1 +1,1 @@
-export const API_BASE_URL = 'http://192.168.1.3:3005';
+export const API_BASE_URL = 'https://rocky-lowlands-58601.herokuapp.com';
